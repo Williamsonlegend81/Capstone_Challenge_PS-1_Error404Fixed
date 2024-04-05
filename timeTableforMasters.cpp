@@ -27,9 +27,10 @@ class Day {
 public:
     string name, code, rm;
     int semester;
+    string program;
     Day() {}
-    Day(string name, string code, string rm, int semester) : name(name), code(code), rm(rm), semester(semester) {}
-    friend void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room);
+    Day(string name, string code, string rm, int semester, string program) : name(name), code(code), rm(rm), semester(semester), program(program) {}
+    friend void timeTable(Course& deg, map<pair<string,int>,bool>& room);
 };
 
 class Course : public Day {
@@ -47,7 +48,7 @@ public:
     Course() {
         isRepeated = false;
     }
-    friend void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room);
+    friend void timeTable(Course& deg, map<pair<string,int>,bool>& room);
     friend void printTimeTable(vector<vector<Day>>& v, string day);
 };
 
@@ -134,7 +135,45 @@ struct instrutorTable {
     string time, rm, crse, day;
 };
 
-map<string,vector<instrutorTable>> instTable;
+map<string,vector<instrutorTable>> instTable; 
+
+void generateInstructorTimeTable(string instructorName, string courseCode, string roomm, int day, int time) {
+    if(day ==  0) {
+                            if(time == 0) instTable[instructorName].push_back({"8 to 8:50",roomm,courseCode, "Monday"});
+                            else if(time == 1) instTable[instructorName].push_back({"9 to 9:50",roomm,courseCode, "Monday"});
+                            else if(time == 2) instTable[instructorName].push_back({"10 to 10:50",roomm,courseCode, "Monday"});
+                            else if(time == 3) instTable[instructorName].push_back({"11 to 11:50",roomm,courseCode, "Monday"});
+                            else if(time == 4) instTable[instructorName].push_back({"12 to 12:50",roomm,courseCode, "Monday"});
+                        }
+                        else if(day ==  1) {
+                            if(time == 0) instTable[instructorName].push_back({"8 to 8:50",roomm,courseCode, "Tuesday"});
+                            else if(time == 1) instTable[instructorName].push_back({"9 to 9:50",roomm,courseCode, "Tuesday"});
+                            else if(time == 2) instTable[instructorName].push_back({"10 to 10:50",roomm,courseCode, "Tuesday"});
+                            else if(time == 3) instTable[instructorName].push_back({"11 to 11:50",roomm,courseCode, "Tuesday"});
+                            else if(time == 4) instTable[instructorName].push_back({"12 to 12:50",roomm,courseCode, "Tuesday"});
+                        }
+                        else if(day ==  2) {
+                            if(time == 0) instTable[instructorName].push_back({"8 to 8:50",roomm,courseCode, "Wednesday"});
+                            else if(time == 1) instTable[instructorName].push_back({"9 to 9:50",roomm,courseCode, "Wednesday"});
+                            else if(time == 2) instTable[instructorName].push_back({"10 to 10:50",roomm,courseCode, "Wednesday"});
+                            else if(time == 3) instTable[instructorName].push_back({"11 to 11:50",roomm,courseCode, "Wednesday"});
+                            else if(time == 4) instTable[instructorName].push_back({"12 to 12:50",roomm,courseCode, "Wednesday"});
+                        }
+                        else if(day ==  3) {
+                            if(time == 0) instTable[instructorName].push_back({"8 to 8:50",roomm,courseCode, "Thursday"});
+                            else if(time == 1) instTable[instructorName].push_back({"9 to 9:50",roomm,courseCode, "Thursday"});
+                            else if(time == 2) instTable[instructorName].push_back({"10 to 10:50",roomm,courseCode, "Thursday"});
+                            else if(time == 3) instTable[instructorName].push_back({"11 to 11:50",roomm,courseCode, "Thursday"});
+                            else if(time == 4) instTable[instructorName].push_back({"12 to 12:50",roomm,courseCode, "Thursday"});
+                        }
+                        else if(day ==  4) {
+                            if(time == 0) instTable[instructorName].push_back({"8 to 8:50",roomm,courseCode, "Friday"});
+                            else if(time == 1) instTable[instructorName].push_back({"9 to 9:50",roomm,courseCode, "Friday"});
+                            else if(time == 2) instTable[instructorName].push_back({"10 to 10:50",roomm,courseCode, "Friday"});
+                            else if(time == 3) instTable[instructorName].push_back({"11 to 11:50",roomm,courseCode, "Friday"});
+                            else if(time == 4) instTable[instructorName].push_back({"12 to 12:50",roomm,courseCode, "Friday"});
+                        }
+}
 
 void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, int time) {
     vector<Day> m;
@@ -145,7 +184,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester,"mTech(EC)");
 
                     if(find(instructor.begin(), instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
@@ -154,47 +193,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         flag++;
                         i.isRepeated = true;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
     }
 
     flag = 0;
@@ -202,7 +207,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "mTech(ICT)");
                     if(find(instructor.begin(), instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -210,47 +215,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         flag++;
                         i.isRepeated = true;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
     }
 
     flag = 0;
@@ -258,7 +229,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MSC(IT)");
                     if(find(instructor.begin(), instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -266,47 +237,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         flag++;
                         i.isRepeated = true;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
     }
 
     flag = 0;
@@ -314,7 +251,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "mTech(ICT)");
                     if(find(instructor.begin(), instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -322,47 +259,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         flag++;
                         i.isRepeated = true;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
     }
 
 
@@ -372,7 +275,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MSC(IT)");
                     if(find(instructor.begin(),instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -380,47 +283,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         i.isRepeated = true;
                         flag++;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
     }
 
     flag = 0;
@@ -428,7 +297,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "mTech(EC)");
                     if(find(instructor.begin(), instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -436,47 +305,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         flag++;
                         i.isRepeated = true;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                       generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
     }
 
     flag = 0;
@@ -484,7 +319,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MSC(DS)");
                     if(find(instructor.begin(),instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -492,47 +327,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         i.isRepeated = true;
                         flag++;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                       generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
        // if(cnt >= 4 && (day == 0 || day == 1 || day == 2)) break;
     }
 
@@ -541,7 +342,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MSC(DS)");
                     if(find(instructor.begin(),instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -549,47 +350,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         i.isRepeated = true;
                         flag++;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
        // if(cnt >= 4 && (day == 0 || day == 1 || day == 2)) break;
     }
 
@@ -598,7 +365,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MSC(AA)");
                     if(find(instructor.begin(),instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -606,47 +373,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         i.isRepeated = true;
                         flag++;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
        // if(cnt >= 4 && (day == 0 || day == 1 || day == 2)) break;
     }
      flag = 0;
@@ -654,7 +387,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MSC(AA)");
                     if(find(instructor.begin(),instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -662,47 +395,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         i.isRepeated = true;
                         flag++;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
        // if(cnt >= 4 && (day == 0 || day == 1 || day == 2)) break;
     }
 
@@ -711,7 +410,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MDES");
                     if(find(instructor.begin(),instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -719,47 +418,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         i.isRepeated = true;
                         flag++;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
        // if(cnt >= 4 && (day == 0 || day == 1 || day == 2)) break;
     }
 
@@ -768,7 +433,7 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
         if(i.lectureHours != 0) {
             for(auto& j : room) {
                 if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "MDES");
                     if(find(instructor.begin(),instructor.end(),i.instructorName) == instructor.end()) {
                         m.push_back(temp);
                         instructor.push_back(i.instructorName);
@@ -776,47 +441,13 @@ void timeTable(Course& deg, map<pair<string,int>,bool,mySort>& room, int day, in
                         j.second = true; 
                         i.isRepeated = true;
                         flag++;
-                        if(day ==  0) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Monday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Monday"});
-                        }
-                        else if(day ==  1) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Tuesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Tuesday"});
-                        }
-                        else if(day ==  2) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Wednesday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Wednesday"});
-                        }
-                        else if(day ==  3) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Thursday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Thursday"});
-                        }
-                        else if(day ==  4) {
-                            if(time == 0) instTable[i.instructorName].push_back({"8 to 8:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 1) instTable[i.instructorName].push_back({"9 to 9:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 2) instTable[i.instructorName].push_back({"10 to 10:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 3) instTable[i.instructorName].push_back({"11 to 11:50",j.first.first,i.courseCode, "Friday"});
-                            else if(time == 4) instTable[i.instructorName].push_back({"12 to 12:50",j.first.first,i.courseCode, "Friday"});
-                        }
+                        generateInstructorTimeTable(i.instructorName,i.courseCode,j.first.first,day,time);
                         break;
                     }
                 }
             }
         }
-        if(flag >= 1) break;
+        if(flag >= 2) break;
        // if(cnt >= 4 && (day == 0 || day == 1 || day == 2)) break;
     }
 
@@ -860,7 +491,7 @@ void printTimeTable(vector<vector<Day>>& v, string day) {
         else if(slot == 4) cout << "Slot M5 : 12 to 12:50\n\n";
 
         for(auto& j : i) {
-            cout << j.code << " | " << j.name << " | " << j.rm << " | Sem : " << j.semester << '\n'; 
+            cout << j.code << " | " << j.name << " | " << j.rm << " | Sem : " << j.semester << " | " << j.program << '\n'; 
         } cout << "---------------------------------------------------------------\n\n";
         slot++;
     }
@@ -959,63 +590,63 @@ int main() {
     }
 
     //lectures that doesn't fit in the Morning shift
-    // list<Day> extra;
+     list<Day> extra;
 
-    // for(auto& i : btech.year4) {
-    //     if(i.lectureHours != 0) {
-    //         for(auto& j : room) {
-    //             if(i.students <= j.first.second && !j.second && !i.isRepeated) {
-    //                 Day temp(i.instructorName,i.courseCode,j.first.first, i.semester);
-    //                 extra.push_back(temp);
-    //                 j.second = true;
-    //                 i.isRepeated = true;
-    //                 i.lectureHours--;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }    
+    for(auto& i : mTech.mTechICTs1) {
+        if(i.lectureHours != 0) {
+            for(auto& j : room) {
+                if(i.students <= j.first.second && !j.second && !i.isRepeated) {
+                    Day temp(i.instructorName,i.courseCode,j.first.first, i.semester, "mTech(ICT)");
+                    extra.push_back(temp);
+                    j.second = true;
+                    i.isRepeated = true;
+                    i.lectureHours--;
+                    break;
+                }
+            }
+        }
+    }    
     
-    // for(auto& it : btech.MnCy2) {
-    //     if(it.lectureHours != 0) {
-    //         for(auto& jt : room) {
-    //             if(it.students <= jt.first.second) {
-    //                 Day temp(it.instructorName,it.courseCode,jt.first.first, it.semester);
-    //                 extra.push_back(temp);
-    //                 it.lectureHours--;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }    
+    for(auto& it : mTech.mTechICTs3) {
+        if(it.lectureHours != 0) {
+            for(auto& jt : room) {
+                if(it.students <= jt.first.second) {
+                    Day temp(it.instructorName,it.courseCode,jt.first.first, it.semester, "mTech(ICT)");
+                    extra.push_back(temp);
+                    it.lectureHours--;
+                    break;
+                }
+            }
+        }
+    }    
 
-//     printTimeTable(mTech.mon, "Monday");
-//     //printFreeSlot(extra, "Monday");
-//     printTimeTable(mTech.tue, "Tuesday");
-//    // printFreeSlot(extra, "Tuesday");
-//     printTimeTable(mTech.wed, "Wednesday");
-//     //printFreeSlot(extra, "Wednesday");
-//     printTimeTable(mTech.thu, "Thursday");
-//     //printFreeSlot(extra, "Thursday");
-//     printTimeTable(mTech.fri, "Friday");
-    //printFreeSlot(extra, "Friday");
+      printTimeTable(mTech.mon, "Monday");
+     printFreeSlot(extra, "Monday");
+      printTimeTable(mTech.tue, "Tuesday");
+      printFreeSlot(extra, "Tuesday");
+     printTimeTable(mTech.wed, "Wednesday");
+      printFreeSlot(extra, "Wednesday");
+      printTimeTable(mTech.thu, "Thursday");
+      printFreeSlot(extra, "Thursday");
+      printTimeTable(mTech.fri, "Friday");
+    printFreeSlot(extra, "Friday");
 
     // cout << (extra.empty() ? "YES\n" : "NO\n");
-    int cnt = 0;
-    for(auto& it : mTech.mTechICTs1) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.mTechICTs3) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.mTechECs1) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.mTechECs3) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCITs1) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCITs3) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCDSs1) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCDSs3) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCAAs1) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCAAs1) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCDSs1) cnt += (it.lectureHours != 0);
-    for(auto& it : mTech.MSCDSs1) cnt += (it.lectureHours != 0);
+    // int cnt = 0;
+    // for(auto& it : mTech.mTechICTs1) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.mTechICTs3) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.mTechECs1) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.mTechECs3) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCITs1) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCITs3) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCDSs1) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCDSs3) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCAAs1) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCAAs1) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCDSs1) cnt += (it.lectureHours != 0);
+    // for(auto& it : mTech.MSCDSs1) cnt += (it.lectureHours != 0);
     
-    cout << cnt << endl;
+    // cout << cnt << endl;
 
     for(auto& it : mTech.mTechECs1) {
         if(it.lectureHours != 0) {
@@ -1077,6 +708,5 @@ int main() {
             cout << it.courseCode << " " << it.instructorName << " " << it.lectureHours << '\n';
         }
     }
-
     return 0;
 }
