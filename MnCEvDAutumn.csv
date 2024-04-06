@@ -1,17 +1,16 @@
-MC116,SR,1,60,1
-MC111,VS,3,60,1
-MC112,RP,3,60,1
-MC123,SP,3,60,1
-MC211,MS,3,60,3
-MC212,RC,3,60,3
-MC213,AT2,3,60,3
-MC214,SS,3,60,3
-MC216,SK,3,60,3
-CT303,AJ,3,60,5
-MC311,NKS,3,60,5
-MC312,MT,3,60,5
-MC313,PK2,3,60,5
-MC314,GS,3,60,5
-ED111,PK2,3,25,1
-ED112,AG,3,25,1
-ED121,PK2,3,25,3
+MC116,SR,1,60,1,Digital Logic Design,X
+MC111,VS,3,60,1,Mathematical-Algorithmic and Computational Thinking,X
+MC112,RP,3,60,1,Computer Organization and Programming,X
+MC123,SP,3,60,1,Discrete Mathematics,X
+MC211,MS,3,60,3,Functions of Several Variables and PDEs,X
+MC212,RC,3,60,3,Database Management Systems,X
+MC213,AT2,3,60,3,Design and Analysis of Algorithms,X
+MC214,SS,3,60,3,Operating Systems,X
+MC216,SK,3,60,3,Probability and Random Processes,X
+CT303,AJ,3,60,5,Digital Communication,X
+MC311,NKS,3,60,5,Mathematical Optimization,X
+MC312,MT,3,60,5,Modelling and Simulation,X
+MC313,PK2,3,60,5,Algebraic Structures,X
+MC314,GS,3,60,5,Principles of Economics,X
+ED111,PK2,3,25,1,Engineering Mathematics I,X
+ED112,AG,3,25,1,Engineering Physics,X
