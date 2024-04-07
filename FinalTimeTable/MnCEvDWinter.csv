@@ -7,9 +7,9 @@ MC221,GP,3,60,4,Mathematical Statistics,MnC
 MC222,NKS,3,60,4,Real and Complex Analysis,MnC
 MC223,PB,3,60,4,Theory of Computation,MnC 
 MC224,VS,3,60,4,Parallel and Distributed Algorithms,MnC
-IT422,RM,3,70,4,Models of Computation,E
-IE402,MKR,3,40,4,Optimization,E
-IE410,TKM,3,20,4,Introduction to Robotics,E
+IT422,RM,3,70,4,Models of Computation,Elective
+IE402,MKR,3,40,4,Optimization,Elective
+IE410,TKM,3,20,4,Introduction to Robotics,Elective
 MC225,SK,3,60,4,Numerical and Computational Methods,MnC
 MC226,RG,2,60,4,Environmental Studies,MnC
 MC321,PA,3,60,6,Machine Learning,MnC
