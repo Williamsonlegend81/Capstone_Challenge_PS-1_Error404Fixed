@@ -1,0 +1,60 @@
+IT206,PhD,1,370,2,Data Structures using OOP,AB
+HM106,PD,3,190,2,Approaches to Indian Society,A
+HM106,RBB,3,190,2,Approaches to Indian Society,B
+IC121,SR,3,190,2,Digital Logic And Computer Organisation,A
+IC121,PK,3,190,2,Digital Logic And Computer Organisation,B
+IT205,SDG,3,190,2,Data Structures,A
+IT205,AR2,3,190,2,Data Structures,B
+SC205,SP,3,190,2,Discrete Maths,A
+SC205,AT2,3,190,2,Discrete Maths,B
+SC217,GD,3,190,2,Electronmagnetic Theory,A
+SC217,GD,3,190,2,Electronmagnetic Theory,B
+IT214,PMJ,3,190,4,Database Management System,AB
+CT216,YV,3,190,4,Introduction to Communication System,AB
+HM116,CJ,3,190,4,Principle of Economics,A
+HM116,GV,3,190,4,Principle of Economics,B
+EL203,BM,3,190,4,Embedded Hardware Design,A
+EL203,YA,3,190,4,Embedded Hardware Design,B
+SC224,MK2,3,190,4,Probability and Statics,A
+SC224,MS,3,190,4,Probability and Statics,B
+CS201,AR,3,30,4,Introductory Computational Physics,A
+SC407,YV,3,190,6,Environmental Science,AB
+CS302,AR,3,40,6,Modelling and Simulation,AB
+CS301,BC,3,40,6,High Performance Computing,AB
+IE406,SM,3,40,6,Machine Learning,E
+IE410,TKM,3,20,6,Introduction to Robotics,E
+IE411,AMM,3,120,6,Operating Systems,E
+IE403,PKS,3,30,6,Human Computer Interaction,E
+IE404,MK,3,30,6,Digital Image Processing,E
+CT476,PK,3,20,6,Microwave Engineering,E
+CT548,MK2,3,20,6,Advanced Wireless Communication,E
+CT547,AJ,3,30,6,Application of ML to Wireless Comm Systems,E 
+CT491,DKG,3,20,6,Satellite and Space Technology and Its Applications,E
+CT550,RLD,3,30,8,ML for Digital Signal Processing,E
+EL516,DNC,3,10,8,Analog VLSI Design,E
+EL464,SR,3,20,8,VLSI Testing and Validation,E 
+EL527,RP,3,10,8,ASIC Design,E 
+EL495,VSP,3,30,8,Sensors & Instrumentation,E 
+EL496,TKM,3,20,8,Robot Programming (RAS minor 6th Sem),E 
+EL497,SK,3,30,8,Autonomous Vehicles,E
+IT422,RM,3,20,8,Models of Computation,E
+IT457,LS,3,10,8,Cloud Computing,E
+IT492,AR2,3,15,8,Recommendation Systems,E
+IT449,PB,3,20,8,Specification and Verification of Systems,E
+IT590,TB,3,30,8,Advanced Statistical Tools for Data Science,E
+IT559,PKS,3,10,8,Distributed Systems,E
+IT504,MB,3,17,8,Distributed Databases,E
+IT583,BG,3,25,8,Deep Learning,E
+IT544,MLD,3,20,8,Modern Cryptography,E
+IT495,GP,3,30,8,Exploratory Data Analysis,E
+IT584,RC,3,20,8,Approximation Algorithms,E
+SC402,MKG,3,20,8,Introduction to Cryptography,E
+SC471,MT,3,20,8,Time Series Analysis,E
+SC472,GS,3,21,8,Econometric Data Analysis Using R,E
+HM327,MM,3,15,8,Culture-Politics-Identity,E
+HM432,NB,3,10,8,Organisational Behaviour,E 
+HM402,SJ,3,14,8,Publics in South Asia: Contemporary Perspectives,E 
+HM488,AM,3,10,8,India through its Literature,E 
+HM489,CJ,3,13,8,International Economy,E 
+HM481,BK,3,13,8,Reading Plato,E 
+SC474,AKR,3,5,8,Optical Communication,E

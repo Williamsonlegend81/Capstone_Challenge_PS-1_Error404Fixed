@@ -1,0 +1,59 @@
+IC101,AKR,1,360,1,Introduction to ICT,AB
+EL111,SM,3,310,1,Basic Electronic Circuit,A
+EL111,RLD,3,310,1,Basic Electronic Circuit,B
+SC107,MKG,3,310,1,Calculus,A
+SC107,SB,3,310,1,Calculus,B
+PC110,AM,3,190,1,Language and Literature,A
+PC110,AM,3,190,1,Language and Literature,B
+IT112,BKG&MK,3,190,1,Introduction to Programming,A
+IT112,BKG&MK,3,190,1,Introduction to Programming,B
+HM216,SJ,3,310,3,Science-Tecnology and Society,AB
+CT204,HP,3,310,3,Signals and Systems,A
+CT204,PK,3,310,3,Signals and Systems,B
+IT216,PB,3,310,3,Design and Analysis of Algorithms,A
+IT216,SP,3,310,3,Design and Analysis of Algorithms,B
+IT227,AKM,3,310,3,Computer Systems Programming,A	
+IT227,SB,3,310,3,Computer Systems Programming,B	
+SC223,AT,3,310,3,Linear Algebra,A
+SC223,RM,3,310,3,Linear Algebra,B
+IT304,PKS,3,200,5,Computer Networks,AB
+IT314,ST,3,200,5,Software Engineering,A
+CS374,MKR,3,100,5,Computational and Numerical Methods,B
+CT303,AJ,3,200,5,Digital Communication,A
+CT303,DKG,3,200,5,Digital Communication,B
+IE402,MK2,3,50,5,Optimization,E
+IE411,SS,3,20,5,Operating Systems,E
+IE407,VSP,3,50,5,Internet of Things,E
+IE406,MVJ,3,18,5,Machine Learning,E
+IE408,RLD,3,25,5,Control of Autonomous Systems,E
+IT494,PMJ,3,34,7,Big Data Processing,E
+CT425,DKG,3,10,7,RF and Anteena Engineering,E		
+CT546,AJ,3,30,7,Introduction to Wireless Communication,E
+CT505,SM,3,12,7,Detection and Estimation Theory,E
+CT437,HP,3,34,7,Speech Communication,E
+EL524,DNC,3,11,7,Basics of VLSI,E	
+EL526,YA,3,17,7,VLSI System Design,E	
+EL530,TKM,3,33,7,Introduction to Embedded Artificial Intelligence,E	
+EL312,AKR,3,11,7,Solid State Devices,E	
+EL531,BM,3,12,7,Digital IC Design,E
+EL453,RP,3,11,7,Nano Electronics,E	
+EL467,YA,3,13,7,Digital Programming,E
+IT414,JP,3,50,7,Software Project Management,E
+IT495,MKG,3,13,7,DNA Storage and Security,E 
+IT486,AMM,3,20,7,Blockchain and Cryptocurreny,E
+IT550,SMD,3,25,7,Information retrieval,E
+IT499,SB,3,16,7,Biometric Security,E
+IT498,MB,3,20,7,Query Processing,E
+IT496,AR2,3,25,7,Introduction to Data Mining,E 
+IT555,SDG,3,30,7,Deep Neural NLP and Application,E	
+SC435,MT,3,56,7,Introduction to Complex Networks,E		
+SC471,VS,3,19,7,Algorithmic Graph Theory,E	
+SC401,AR,3,14,7,Introduction to Non linear dynamics,E		
+SC421,SB2,3,15,7,Introduction to Modern Algebra,E
+SC477,GD,3,17,7,Quantum Information Theory,E
+HM333,NB,3,9,7,Human Behaviour Management,E	
+HM403,CJ,3,10,7,Corporate Finance,E	
+HM491,NS,3,15,7,Crime Fiction,E	
+HM484,BK,3,14,7,Modern European Philosphy,E	
+HM492,GV,2,12,7,Design Thinking,E	
+HM490,ADT,2,12,7,Communicating Conservation:RCGC,E
