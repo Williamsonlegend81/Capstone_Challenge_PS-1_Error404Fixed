@@ -1,3 +1,7 @@
+Group Name : Error404Fixed
+Section : A
+Problem : Automatic time table generator (P1)
+
 Pala Aaditya Vimalkumar(202301076) - 
 Coded in cpp, main logic and implementation of timetable generation, Documentation of timetable generation function, 
 assisted vrund in python.
