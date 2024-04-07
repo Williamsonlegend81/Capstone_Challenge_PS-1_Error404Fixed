@@ -21,39 +21,39 @@ IT314,ST,3,200,5,Software Engineering,A
 CS374,MKR,3,100,5,Computational and Numerical Methods,B
 CT303,AJ,3,200,5,Digital Communication,A
 CT303,DKG,3,200,5,Digital Communication,B
-IE402,MK2,3,50,5,Optimization,E
-IE411,SS,3,20,5,Operating Systems,E
-IE407,VSP,3,50,5,Internet of Things,E
-IE406,MVJ,3,18,5,Machine Learning,E
-IE408,RLD,3,25,5,Control of Autonomous Systems,E
-IT494,PMJ,3,34,7,Big Data Processing,E
-CT425,DKG,3,10,7,RF and Anteena Engineering,E		
-CT546,AJ,3,30,7,Introduction to Wireless Communication,E
-CT505,SM,3,12,7,Detection and Estimation Theory,E
-CT437,HP,3,34,7,Speech Communication,E
-EL524,DNC,3,11,7,Basics of VLSI,E	
-EL526,YA,3,17,7,VLSI System Design,E	
-EL530,TKM,3,33,7,Introduction to Embedded Artificial Intelligence,E	
-EL312,AKR,3,11,7,Solid State Devices,E	
-EL531,BM,3,12,7,Digital IC Design,E
-EL453,RP,3,11,7,Nano Electronics,E	
-EL467,YA,3,13,7,Digital Programming,E
-IT414,JP,3,50,7,Software Project Management,E
-IT495,MKG,3,13,7,DNA Storage and Security,E 
-IT486,AMM,3,20,7,Blockchain and Cryptocurreny,E
-IT550,SMD,3,25,7,Information retrieval,E
-IT499,SB,3,16,7,Biometric Security,E
-IT498,MB,3,20,7,Query Processing,E
-IT496,AR2,3,25,7,Introduction to Data Mining,E 
-IT555,SDG,3,30,7,Deep Neural NLP and Application,E	
-SC435,MT,3,56,7,Introduction to Complex Networks,E		
-SC471,VS,3,19,7,Algorithmic Graph Theory,E	
-SC401,AR,3,14,7,Introduction to Non linear dynamics,E		
-SC421,SB2,3,15,7,Introduction to Modern Algebra,E
-SC477,GD,3,17,7,Quantum Information Theory,E
-HM333,NB,3,9,7,Human Behaviour Management,E	
-HM403,CJ,3,10,7,Corporate Finance,E	
-HM491,NS,3,15,7,Crime Fiction,E	
-HM484,BK,3,14,7,Modern European Philosphy,E	
-HM492,GV,2,12,7,Design Thinking,E	
-HM490,ADT,2,12,7,Communicating Conservation:RCGC,E
+IE402,MK2,3,50,5,Optimization,Elective
+IE411,SS,3,20,5,Operating Systems,Elective
+IE407,VSP,3,50,5,Internet of Things,Elective
+IE406,MVJ,3,18,5,Machine Learning,Elective
+IE408,RLD,3,25,5,Control of Autonomous Systems,Elective
+IT494,PMJ,3,34,7,Big Data Processing,Elective
+CT425,DKG,3,10,7,RF and Anteena Engineering,Elective		
+CT546,AJ,3,30,7,Introduction to Wireless Communication,Elective
+CT505,SM,3,12,7,Detection and Estimation Theory,Elective
+CT437,HP,3,34,7,Speech Communication,Elective
+EL524,DNC,3,11,7,Basics of VLSI,Elective	
+EL526,YA,3,17,7,VLSI System Design,Elective	
+EL530,TKM,3,33,7,Introduction to Embedded Artificial Intelligence,Elective	
+EL312,AKR,3,11,7,Solid State Devices,Elective	
+EL531,BM,3,12,7,Digital IC Design,Elective
+EL453,RP,3,11,7,Nano Electronics,Elective	
+EL467,YA,3,13,7,Digital Programming,Elective
+IT414,JP,3,50,7,Software Project Management,Elective
+IT495,MKG,3,13,7,DNA Storage and Security,Elective 
+IT486,AMM,3,20,7,Blockchain and Cryptocurreny,Elective
+IT550,SMD,3,25,7,Information retrieval,Elective
+IT499,SB,3,16,7,Biometric Security,Elective
+IT498,MB,3,20,7,Query Processing,Elective
+IT496,AR2,3,25,7,Introduction to Data Mining,Elective 
+IT555,SDG,3,30,7,Deep Neural NLP and Application,Elective	
+SC435,MT,3,56,7,Introduction to Complex Networks,Elective		
+SC471,VS,3,19,7,Algorithmic Graph Theory,Elective	
+SC401,AR,3,14,7,Introduction to Non linear dynamics,Elective
+SC421,SB2,3,15,7,Introduction to Modern Algebra,Elective
+SC477,GD,3,17,7,Quantum Information Theory,Elective
+HM333,NB,3,9,7,Human Behaviour Management,Elective	
+HM403,CJ,3,10,7,Corporate Finance,Elective
+HM491,NS,3,15,7,Crime Fiction,Elective
+HM484,BK,3,14,7,Modern European Philosphy,Elective	
+HM492,GV,2,12,7,Design Thinking,Elective	
+HM490,ADT,2,12,7,Communicating Conservation:RCGC,Elective
